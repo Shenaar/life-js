@@ -18,7 +18,7 @@ var TableDrawer = function(target, game) {
         this.table.append($tr);
     }
 
-    this.redraw();
+    this.redrawFull();
 
 };
 
@@ -28,9 +28,9 @@ TableDrawer.prototype = {
             var cell = this.game.changed[i];
             this.drawCell(cell);
         }
+    },
 
-        return;
-
+    redrawFull: function () {
         for (var i = 0; i < this.game.width; ++i) {
             for (var j = 0; j < this.game.height; ++j) {
                 this.drawCell(this.game.get(i, j));
