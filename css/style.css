@@ -1,0 +1,117 @@
+#footer {
+    background: none;
+    border: none !important;
+}
+
+.panel {
+    border: none;
+    box-shadow: none;
+}
+
+.panel-heading {
+	padding: 15px;
+    border:solid 1px #ddd;
+}
+
+.panel-heading .form-inline {
+    margin-bottom: 0px;
+}
+
+.panel-heading .form-inline .btn {
+    height: 34px;
+}
+
+.panel-heading .form-inline input {
+    width: 80px;
+}
+
+.game-stats {
+    line-height: 34px;
+}
+
+.game-stats .label {
+    font-size: 14px;
+    min-width: 40px;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+	.panel-heading .form-inline input {
+		width: 100%;
+	}
+
+	.panel-heading .form-inline .btn {
+		display: block;
+		width: 100%;
+	}
+
+	.panel-heading .btn-group-justified > .btn-group .btn {
+		width: 50%;
+	}
+
+	.game-stats, .auto-btns {
+		margin-top: 15px;
+	}
+
+	.auto-btns {
+		text-align: center !important;
+	}
+}
+
+#game-field {
+    margin: 20px auto;
+	border: none;
+}
+
+@media (max-width: 768px) {
+
+    #game-field {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+#game-field tr td {
+    width: 50px;
+    height: 50px;
+	border: 1px solid #666;
+    text-align: center;
+    cursor: pointer;
+}
+
+.running #game-field tr td {
+    cursor: not-allowed;
+}
+
+#game-field tr td.alive {
+    width: 50px;
+    height: 50px;
+    background-color: #449d44;
+    transition: background-color 100ms linear;
+}
+
+#game-field tr td.alive.doomed {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    transition: background-color 100ms linear;
+}
+
+#game-field tr td.viable {
+    width: 50px;
+    height: 50px;
+    background-color: #c9e2b3;
+    transition: background-color 100ms linear;
+}
+
+#game-field tr td i {
+    color: #449d44;
+}
+
+.auto-btns .btn {
+    height: 34px;
+}
+
+.auto-btns .btn.pause-game {
+    display: none;
+}

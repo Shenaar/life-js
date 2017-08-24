@@ -1,0 +1,89 @@
+﻿<html>
+    <head>
+        <title>Life Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./js/jquery-1.12.1.min.js"></script>
+        <script src="./js/hasher.js"></script>
+        <script src="./js/tableDrawer.js"></script>
+        <script src="./js/tableColorDrawer.js"></script>
+        <script src="./js/tableIconDrawer.js"></script>
+        <script src="./js/cell.js"></script>
+        <script src="./js/game.js"></script>
+        <script src="./js/config.js"></script>
+        <script src="./js/controller.js"></script>
+        <link rel="stylesheet" href="./css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="./css/style.css" type="text/css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="width" value="10" min="1" placeholder="Ширина">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="height" value="10" min="1" placeholder="Высота">
+                                </div>
+                                <button type="submit" class="btn btn-danger reset-game hidden-xs">Generate</button>
+                                <button type="button" class="btn btn-default hash-game hidden-xs"><i class="glyphicon glyphicon-link"></i></button>
+								<div class="visible-xs ">
+									<div class="btn-group btn-group-justified">
+										<div class="btn-group">
+											<button type="submit" class="btn btn-danger reset-game">Generate</button>
+											<button type="button" class="btn btn-default hash-game"><i class="glyphicon glyphicon-link"></i></button>
+										</div>
+									</div>
+								</div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4 text-center game-stats">
+                            <div class="row">
+                                <div class="col-lg-4 col-xs-6">
+                                    День: <span id="days-counter" class="label label-info"></span>
+                                </div>
+                                <div class="col-lg-4 col-xs-6">
+                                    Живых: <span id="alive-counter" class="label label-success"></span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-success step-game block-on-extinction hidden-xs pull-right">
+                                        <i class="glyphicon glyphicon-step-forward"></i>
+                                        Step
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-lg-4 text-right auto-btns">
+							<div class="hidden-xs">
+                                <button type="button" class="btn btn-default toggle-view">
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </button>
+								<button type="button" class="btn btn-default play-game block-on-extinction"><i class="glyphicon glyphicon-play"></i></button>
+								<button type="button" class="btn btn-default pause-game block-on-extinction"><i class="glyphicon glyphicon-pause"></i></button>
+							</div>
+							<div class="visible-xs ">
+								<div class="btn-group btn-group-justified">
+									<div class="btn-group">
+										<button type="button" class="btn btn-success step-game block-on-extinction"><i class="glyphicon glyphicon-step-forward"></i></button>
+										<button type="button" class="btn btn-default play-game block-on-extinction"><i class="glyphicon glyphicon-play"></i></button>
+										<button type="button" class="btn btn-default pause-game block-on-extinction"><i class="glyphicon glyphicon-pause"></i></button>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+                <table id="game-field">
+
+                </table>
+                <div class="panel-footer text-center" id="footer">
+                    Created by <a href="https://github.com/Shenaar" target="_blank">Shenaar</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
