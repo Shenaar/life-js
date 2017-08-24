@@ -10,7 +10,6 @@ var GameController = function (gameClass, drawerClass) {
     this.game = null;
     this.drawer = null;
 
-    this.blocked = false;
     this.autoplay = false;
 
     $(document).off('click', '.reset-game');
@@ -85,13 +84,15 @@ GameController.prototype = {
             return;
         }
 
-        $('.reset-game').attr('disabled', true);
+        var $reset = $('.reset-game');
+
+        $reset.attr('disabled', true);
 
         this.game = new this.gameClass(width, height);
         this.drawNewField();
         location.hash = '';
         $('.block-on-extinction').removeAttr('disabled');
-        $('.reset-game').attr('disabled', false);
+        $reset.attr('disabled', false);
 
         return false;
     },
@@ -114,16 +115,9 @@ GameController.prototype = {
         if (!this.game) {
             return false;
         }
-        //this.blocked = true;
 
         var start = new Date().getTime();
         this.game.step();
-
-        /*if (this.prev) {
-            console.log(this.prev - start);
-        }
-        this.prev = start;*/
-
 
         if (this.updateState() && this.autoplay) {
             var end = new Date().getTime();
@@ -132,8 +126,6 @@ GameController.prototype = {
                 that.step();
             }, Math.max(this.delay - (end - start), 10));
         }
-
-        this.blocked = false;
 
         return false;
     },
@@ -144,13 +136,10 @@ GameController.prototype = {
     },
 
     updateState: function () {
-        var start = new Date().getTime();
-
         this.drawer.redraw();
 
         $('#days-counter').text(this.game.day);
         $('#alive-counter').text(this.game.alive);
-        //console.log('Draw: ' + (new Date().getTime() - start));
 
         if (!this.game.alive && this.game.day > 1) {
             this.pause();
@@ -161,7 +150,7 @@ GameController.prototype = {
             return false;
         }
 
-        if (this.game.changed.length == 0 && this.game.day > 1) {
+        if (this.game.isStable()) {
             alert('Система стабильна!');
             this.pause();
         } else if (!this.autoplay) {

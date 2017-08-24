@@ -4,7 +4,7 @@ var Game = function (width, height, seed) {
     this.height = height;
     this.array = new Array(this.width);
     this.alive = 0;
-    this.changed = new Array();
+    this.changed = [];
 
     var c = 0;
 
@@ -13,12 +13,9 @@ var Game = function (width, height, seed) {
 
         for (var j = 0; j < this.height; ++j) {
             if (!seed) {
-
-                var cell = new Cell(i, j, parseInt((Math.random() * 100)) <= CONFIG.PROBABILITY);
-                this.array[i][j] = cell;
+                this.array[i][j] = new Cell(i, j, parseInt((Math.random() * 100)) <= CONFIG.PROBABILITY);
 
             } else if (c < seed.length){
-
                 this.array[i][j] = new Cell(i, j, parseInt(seed[c]));
                 ++c;
 
@@ -46,11 +43,9 @@ Game.prototype = {
     },
 
     step: function () {
-        var start = new Date().getTime();
-
         ++this.day;
         this.alive = 0;
-        this.changed = new Array();
+        this.changed = [];
         var newState = new Array(this.width);
 
         for (var i = 0; i < this.width; ++i) {
@@ -83,8 +78,6 @@ Game.prototype = {
 
         this.array = newState;
         this.updateNeighbours();
-
-        //console.log('Step: ' + (new Date().getTime() - start));
     },
 
     neighbours: function(cell, change) {
@@ -111,8 +104,10 @@ Game.prototype = {
 
     toggle: function(x, y) {
         var cell = this.get(x, y);
-        this.array[x][y].state = 1 - this.array[x][y].state;
-        if (this.array[x][y].isAlive()) {
+
+        cell.state = 1 - cell.state;
+
+        if (cell.isAlive()) {
             ++this.alive;
             this.neighbours(cell, 1);
         } else {
@@ -132,6 +127,10 @@ Game.prototype = {
                 this.neighbours(cell);
             }
         }
+    },
+
+    isStable: function() {
+        return this.changed.length == 0 && this.day > 1;
     }
 
 };

@@ -14,7 +14,7 @@ var Hasher = {
 
         for (var i = 0; i < game.width; ++i) {
             for (var j = 0; j < game.height; ++j) {
-                str += 1 * game.get(i, j);
+                str += 1 * game.get(i, j).isAlive();
             }
         }
 
